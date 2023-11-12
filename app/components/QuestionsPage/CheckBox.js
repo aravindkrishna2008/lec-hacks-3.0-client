@@ -8,7 +8,7 @@ const CheckBox = ({ checkBox, setCheckBox, title, setClicked }) => {
     });
   };
   return (
-    <div>
+    <div className="">
       <h2 className="text-[1.8vw] text-[#828282] mb-[2.4vh] font-medium">
         {title}
       </h2>

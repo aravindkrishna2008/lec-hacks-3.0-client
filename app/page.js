@@ -12,26 +12,26 @@ export default function Home() {
   const [data, setData] = useState({});
 
   function handleRoute(index, data = {}) {
-    console.table({index, data})
-    setIndex(index)
-    setData(prevData => {
-     return {
+    console.table({ index, data });
+    setIndex(index);
+    setData((prevData) => {
+      return {
         ...prevData,
-        data
-     } 
-    })
+        data,
+      };
+    });
   }
 
   const pages = [
     <MainPage handleRoute={handleRoute} />,
     <QuestionPage handleRoute={handleRoute} />,
-    <ResultPage handleRoute={handleRoute} />,
     <SummaryPage handleRoute={handleRoute} />,
+    <ResultPage data={data} handleRoute={handleRoute} />,
   ];
 
-  // window.addEventListener("beforeunload", function (e) {
-  //   e.preventDefault();
-  // });
-
-  return <div>{pages[index]}</div>;
+    return (
+      <div>
+      {pages[index]}
+      </div>
+    );
 }

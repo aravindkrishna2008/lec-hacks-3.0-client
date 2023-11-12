@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CheckBox from "./CheckBox";
 
 const QuestionPage = ({ handleRoute }) => {
@@ -24,25 +24,33 @@ const QuestionPage = ({ handleRoute }) => {
   const [clickedType, setClickedType] = useState(false);
   const [clickedFormality, setClickedFormality] = useState(false);
 
-  document.addEventListener("keydown", function (event) {
-    // Check if the pressed key is Enter (key code 13)
-    event.preventDefault();
-    console.log(clickedType);
-    if (
-      (event.code === "Enter" || event.code == "NumpadEnter") &&
-      clickedType &&
-      clickedFormality
-    ) {
-      // Log "hi" to the console
-      handleRoute(2);
-    }
-  });
-
   return (
     <div className="flex items-center justify-center h-[100vh]  ">
+      <img src="shapesQuestion.svg" className="absolute w-[90vw ] -z-50 mt-24" />
+
       <div className="flex flex-col gap-[20px]">
+        {clickedType && clickedFormality ? (
+          <img
+            src="enabledBtn.svg"
+            onClick={() =>
+              handleRoute(2, { type: clickedType, formality: clickedFormality })
+            }
+            className="absolute h-[10vh] rotate-180 right-10 cursor-pointer top-[50%]"
+          />
+        ) : (
+          <img
+            src="disabledBtn.svg"
+            className="absolute right-10  h-[10vh] cursor-pointer top-[50%]"
+          />
+        )}
+        <img
+          src="enabledBtn.svg"
+          onClick={() => handleRoute(0)}
+          className="absolute h-[10vh] cursor-pointer left-10 top-[50%]"
+        />
+
         <h1 className="font-bold text-center text-[3.2vw]">A Few Questions</h1>
-        <div className="flex flex-col h-[56vh] w-[64vw] box p-[4vw] gap-[5vh]">
+        <div className="flex flex-col justify-center  h-[56vh] w-[64vw] box py-0 p-[4vw] gap-[5vh]">
           <CheckBox
             checkBox={type}
             setCheckBox={setType}
