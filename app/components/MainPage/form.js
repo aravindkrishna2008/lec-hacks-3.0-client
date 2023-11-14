@@ -17,7 +17,7 @@ export default function MainForm({ hs, formik }) {
   );
 }
 
-export function Button({ hs, val, hr, er }) {
+export function Button({ hs, val, hr, er, setUrl }) {
   const isValidUrl = (urlString) => {
     var urlPattern = new RegExp(
       "^(https?:\\/\\/)?" + // validate protocol
@@ -40,6 +40,7 @@ export function Button({ hs, val, hr, er }) {
               alert(`ERROR: ${er.url}`);
             } else {
               hr(1, { url: val.url });
+              setUrl(val.url);
             }
           }}
           className="absolute h-[10vh] rotate-180 right-10 cursor-pointer top-[50%]"
@@ -57,6 +58,7 @@ export function Button({ hs, val, hr, er }) {
             alert(`ERROR: ${er.url}`);
           } else {
             hr(1, { url: val.url });
+            setUrl(val.url);
           }
         }}
         className="h-full items-center pr-4"

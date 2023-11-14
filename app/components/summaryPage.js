@@ -1,8 +1,38 @@
 import React, { useState } from "react";
 
-const SummaryPage = ({ data, hr, handleRoute }) => {
-  const [textareaValue, setTextareaValue] = useState("");
+const SummaryPage = ({
+  data,
+  hr,
+  url,
+  handleRoute,
+  textareaValue,
+  setTextareaValue,
+  setResponse,
+}) => {
+  const apiUrl = "http://127.0.0.1:5000/api";
+  console.log(data);
 
+  const sendPostRequest = async () => {
+    const jsonData = {
+      url1: url,
+    };
+
+    try {
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(jsonData),
+      });
+
+      const data = await response.json();
+      console.log("Response:", data);
+      setResponse(data);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
   const handleInputChange = (event) => {
     setTextareaValue(event.target.value);
   };
@@ -13,9 +43,11 @@ const SummaryPage = ({ data, hr, handleRoute }) => {
       {textareaValue ? (
         <img
           src="enabledBtn.svg"
-          onClick={() =>
-            handleRoute(2, { type: clickedType, formality: clickedFormality })
-          }
+          onClick={async () => {
+            console.log("pressed");
+            sendPostRequest();
+            handleRoute(3);
+          }}
           className="absolute h-[10vh] rotate-180 right-10 cursor-pointer top-[50%]"
         />
       ) : (

@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={sora.className}>
         {/* add noise texture (img) as bg and set it to -1000 z index */}
-        <div className="absolute inset-0 z-[-1000]">
+        <div className="inset-0 z-[-1000] fixed">
           <img src="/noise.png" alt="" className="object-cover w-full h-full" />
         </div>
         {children}

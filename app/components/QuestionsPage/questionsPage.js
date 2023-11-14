@@ -1,32 +1,29 @@
 "use client";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import CheckBox from "./CheckBox";
 
-const QuestionPage = ({ handleRoute }) => {
-  const [type, setType] = useState([
-    { id: 1, name: "Research Project", checked: false },
-    { id: 2, name: "School Paper", checked: false },
-    { id: 3, name: "Presentation", checked: false },
-    { id: 4, name: "Historical Investig...", checked: false },
-    { id: 5, name: "For Fun", checked: false },
-    { id: 6, name: "Other", checked: false },
-  ]);
-
-  const [formality, setFormality] = useState([
-    { id: 1, name: "Really Formal", checked: false },
-    { id: 2, name: "Formal", checked: false },
-    { id: 3, name: "College", checked: false },
-    { id: 4, name: "High School", checked: false },
-    { id: 5, name: "Middle School", checked: false },
-    { id: 6, name: "Doesn't Matter", checked: false },
-  ]);
-
-  const [clickedType, setClickedType] = useState(false);
-  const [clickedFormality, setClickedFormality] = useState(false);
+const QuestionPage = ({
+  handleRoute,
+  type,
+  setType,
+  formality,
+  setFormality,
+  clickedType,
+  setClickedType,
+  clickedFormality,
+  setClickedFormality,
+  url,
+}) => {
+  useEffect(() => {
+    console.log("url" + url);
+  });
 
   return (
     <div className="flex items-center justify-center h-[100vh]  ">
-      <img src="shapesQuestion.svg" className="absolute w-[90vw ] -z-50 mt-24" />
+      <img
+        src="shapesQuestion.svg"
+        className="absolute w-[90vw ] -z-50 mt-24"
+      />
 
       <div className="flex flex-col gap-[20px]">
         {clickedType && clickedFormality ? (

@@ -3,9 +3,7 @@ import MainForm, { Button } from "./form";
 import { useFormik, FormikProvider, Formik } from "formik";
 import { config } from "./config";
 
-const MainPage = ({ handleRoute }) => {
-  const [url, setUrl] = useState("");
-
+const MainPage = ({ handleRoute, setUrl }) => {
   // document.addEventListener("keydown", function (event) {
   //   // Check if the pressed key is Enter (key code 13)
   //   event.preventDefault();
@@ -37,6 +35,7 @@ const MainPage = ({ handleRoute }) => {
                 </div>
                 <div className="items-center h-[2.5vw] ml-auto">
                   <Button
+                    setUrl={setUrl}
                     er={errors}
                     hr={handleRoute}
                     hs={handleSubmit}
